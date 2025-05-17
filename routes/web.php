@@ -11,8 +11,9 @@ Route::get('/', function () {
 });
 
 
+Route::post('/api/tokens/create', [ApiTokenController::class, 'createToken']);
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/api/tokens/create', [ApiTokenController::class, 'createToken']);
     Route::get('/api/user', function (Request $request) {
         $token = PersonalAccessToken::findToken($request->bearerToken());
         return $token->tokenable;
