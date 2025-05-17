@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(EnsureFrontendRequestsAreStateful::class);
+        $middleware->validateCsrfTokens(except: ['*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
